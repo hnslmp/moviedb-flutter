@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:moviedb_flutter/model/genres_response.dart';
 import 'package:moviedb_flutter/model/movielist_response.dart';
+import 'package:moviedb_flutter/presentation/moviedetail_page.dart';
 import '../services.dart';
 
 class MovieListPage extends StatefulWidget {
@@ -47,10 +48,26 @@ class _MovieListPageState extends State<MovieListPage> {
       ),
       body: Visibility(
           visible: isLoaded,
-          child: GridView.count(
-            crossAxisCount: 2,
-            children:
-                movieList.map((e) => Image.network(e.posterUrl())).toList(),
+          child: GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              crossAxisSpacing: 20,
+              mainAxisSpacing: 10,
+            ),
+            itemCount: movieList.length,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => MovieDetailPage(
+                            movie: movieList[index],
+                          )));
+                },
+                child: GridTile(
+                  child: Image.network(movieList[index].posterUrl()),
+                ),
+              );
+            },
           ),
           replacement: const Center(
             child: CircularProgressIndicator(),
