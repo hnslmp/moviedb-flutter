@@ -1,15 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:moviedb_flutter/model/genres_response.dart';
 import 'package:moviedb_flutter/model/movielist_response.dart';
 import '../services.dart';
 
 class MovieListPage extends StatefulWidget {
-  const MovieListPage({super.key});
+  final Genre genre;
+
+  const MovieListPage({super.key, required this.genre});
 
   @override
-  State<MovieListPage> createState() => _MovieListPageState();
+  State<MovieListPage> createState() => _MovieListPageState(genre: this.genre);
 }
 
 class _MovieListPageState extends State<MovieListPage> {
+  final Genre genre;
+
+  _MovieListPageState({required this.genre});
+
+  List<MovieObject> movieList = [];
+
   MovieListResponse? movieListResponse;
   var isLoaded = false;
 
@@ -20,18 +29,11 @@ class _MovieListPageState extends State<MovieListPage> {
   }
 
   fetchMovieList() async {
-    movieListResponse = await Services().fetchMovieList("Crime", 1);
-
-    var results = movieListResponse?.results;
-
-    if (results != null) {
-      for (var result in results) {
-        print(result.title);
-      }
-    }
-
-    if (movieListResponse != null) {
+    movieListResponse = await Services().fetchMovieList(genre.id, 1);
+    var resultData = movieListResponse?.results;
+    if (resultData != null) {
       setState(() {
+        movieList.addAll(resultData);
         isLoaded = true;
       });
     }
@@ -41,8 +43,18 @@ class _MovieListPageState extends State<MovieListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Select your movie"),
+        title: Text(genre.name + " genre movies"),
       ),
+      body: Visibility(
+          visible: isLoaded,
+          child: GridView.count(
+            crossAxisCount: 2,
+            children:
+                movieList.map((e) => Image.network(e.posterUrl())).toList(),
+          ),
+          replacement: const Center(
+            child: CircularProgressIndicator(),
+          )),
     );
   }
 }

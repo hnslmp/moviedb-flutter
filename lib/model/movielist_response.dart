@@ -15,15 +15,15 @@ class MovieListResponse {
   });
 
   int page;
-  List<Result> results;
+  List<MovieObject> results;
   int totalPages;
   int totalResults;
 
   factory MovieListResponse.fromJson(Map<String, dynamic> json) =>
       MovieListResponse(
         page: json["page"],
-        results:
-            List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
+        results: List<MovieObject>.from(
+            json["results"].map((x) => MovieObject.fromJson(x))),
         totalPages: json["total_pages"],
         totalResults: json["total_results"],
       );
@@ -36,8 +36,8 @@ class MovieListResponse {
       };
 }
 
-class Result {
-  Result({
+class MovieObject {
+  MovieObject({
     required this.adult,
     required this.backdropPath,
     required this.genreIds,
@@ -69,7 +69,9 @@ class Result {
   double voteAverage;
   int voteCount;
 
-  factory Result.fromJson(Map<String, dynamic> json) => Result(
+  String posterUrl() => "https://image.tmdb.org/t/p/w500/" + posterPath;
+
+  factory MovieObject.fromJson(Map<String, dynamic> json) => MovieObject(
         adult: json["adult"],
         backdropPath: json["backdrop_path"],
         genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
