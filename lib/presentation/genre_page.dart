@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:moviedb_flutter/model/GenresResponse.dart';
+import 'package:moviedb_flutter/presentation/movielist_page.dart';
 import 'package:moviedb_flutter/services.dart';
-
-import 'model/GenresResponse.dart';
 
 class GenrePage extends StatefulWidget {
   const GenrePage({super.key});
@@ -42,6 +42,10 @@ class _GenrePageState extends State<GenrePage> {
               return ListTile(
                 title: Text(genresResponse!.genres[index].name),
                 trailing: const Icon(Icons.arrow_forward),
+                onTap: () {
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => MovieListPage()));
+                },
               );
             }),
         replacement: const Center(

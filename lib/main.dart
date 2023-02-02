@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'genre_page.dart';
+import 'presentation/genre_page.dart';
 
 void main() {
   runApp(const MyApp());
