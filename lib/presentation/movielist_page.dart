@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:moviedb_flutter/model/genres_response.dart';
-import 'package:moviedb_flutter/model/movielist_response.dart';
+import 'package:moviedb_flutter/model/reponse/genres_response.dart';
+import 'package:moviedb_flutter/model/reponse/movielist_response.dart';
 import 'package:moviedb_flutter/presentation/moviedetail_page.dart';
 import '../services.dart';
 

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:moviedb_flutter/model/movielist_response.dart';
-import 'model/genres_response.dart';
+import 'package:moviedb_flutter/model/reponse/movielist_response.dart';
+import 'model/reponse/genres_response.dart';
 
 class Services {
   Future<GenresResponse?> fetchGenres() async {
