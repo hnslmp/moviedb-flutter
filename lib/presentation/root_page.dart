@@ -3,7 +3,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moviedb_flutter/model/bloc/navigation/navigation_cubit.dart';
-import 'package:moviedb_flutter/model/navbar_items.dart';
+import 'package:moviedb_flutter/model/bloc/navigation/navbar_items.dart';
 import 'package:moviedb_flutter/presentation/genre_page.dart';
 
 class RootPage extends StatelessWidget {

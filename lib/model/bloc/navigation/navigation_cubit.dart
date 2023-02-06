@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import 'package:moviedb_flutter/model/navbar_items.dart';
+import 'package:moviedb_flutter/model/bloc/navigation/navbar_items.dart';
 
 part 'navigation_state.dart';
 
