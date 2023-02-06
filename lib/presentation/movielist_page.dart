@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moviedb_flutter/model/bloc/movielist/movielist_cubit.dart';
-import 'package:moviedb_flutter/model/reponse/genres_response.dart';
-import 'package:moviedb_flutter/model/reponse/movielist_response.dart';
+import 'package:moviedb_flutter/model/response/genres_response.dart';
+import 'package:moviedb_flutter/model/response/movielist_response.dart';
 import 'package:moviedb_flutter/presentation/moviedetail_page.dart';
 import '../services.dart';
 

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:moviedb_flutter/model/reponse/movielist_response.dart';
+import 'package:moviedb_flutter/model/response/movielist_response.dart';
 
 class MovieDetailPage extends StatefulWidget {
   final MovieObject movie;

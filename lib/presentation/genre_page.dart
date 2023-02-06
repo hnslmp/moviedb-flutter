@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moviedb_flutter/model/bloc/genre/genre_cubit.dart';
-import 'package:moviedb_flutter/model/reponse/genres_response.dart';
+import 'package:moviedb_flutter/model/response/genres_response.dart';
 import 'package:moviedb_flutter/presentation/movielist_page.dart';
 import 'package:moviedb_flutter/services.dart';
 
@@ -25,9 +25,12 @@ class GenrePage extends StatelessWidget {
                   title: Text(state.genres[index].name),
                   trailing: const Icon(Icons.arrow_forward),
                   onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
                         builder: (context) =>
-                            MovieListPage(selectedGenre: state.genres[index])));
+                            MovieListPage(selectedGenre: state.genres[index]),
+                      ),
+                    );
                   },
                 );
               }),
