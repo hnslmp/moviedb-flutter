@@ -27,7 +27,7 @@ class GenrePage extends StatelessWidget {
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) =>
-                            MovieListPage(genre: state.genres[index])));
+                            MovieListPage(selectedGenre: state.genres[index])));
                   },
                 );
               }),
