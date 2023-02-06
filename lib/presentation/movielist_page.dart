@@ -63,32 +63,44 @@ class MovieListPage extends StatelessWidget {
         body: BlocBuilder<MovieListCubit, MovieListState>(
           builder: (context, state) {
             return Visibility(
-                visible: state.isLoaded,
-                child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 20,
-                    mainAxisSpacing: 10,
-                  ),
-                  itemCount: state.movieList.length,
-                  itemBuilder: (context, index) {
-                    return GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => MovieDetailPage(
-                                  movie: state.movieList[index],
-                                )));
-                      },
-                      child: GridTile(
-                        child:
-                            Image.network(state.movieList[index].posterUrl()),
-                      ),
-                    );
-                  },
+              visible: state.isLoaded,
+              child: GridView.builder(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  crossAxisSpacing: 20,
+                  mainAxisSpacing: 10,
                 ),
-                replacement: const Center(
-                  child: CircularProgressIndicator(),
-                ));
+                itemCount: state.movieList.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => MovieDetailPage(
+                                movie: state.movieList[index],
+                              )));
+                    },
+                    child: GridTile(
+                      child: Image.network(
+                        state.movieList[index].posterUrl(),
+                        loadingBuilder: (context, child, loadingProgress) {
+                          if (loadingProgress == null) return child;
+                          return Container(
+                            height: 200,
+                            width: 200,
+                            child: Center(
+                              child: CircularProgressIndicator(),
+                            ),
+                          );
+                        },
+                      ),
+                    ),
+                  );
+                },
+              ),
+              replacement: const Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
           },
         ),
       ),
