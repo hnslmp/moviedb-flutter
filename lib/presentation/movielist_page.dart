@@ -2,51 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moviedb_flutter/model/bloc/movielist/movielist_cubit.dart';
 import 'package:moviedb_flutter/model/response/genres_response.dart';
-import 'package:moviedb_flutter/model/response/movielist_response.dart';
 import 'package:moviedb_flutter/presentation/moviedetail_page.dart';
-import '../services.dart';
-
-// class MovieListPage extends StatefulWidget {
-//   final Genre genre;
-
-//   const MovieListPage({super.key, required this.genre});
-
-//   @override
-//   State<MovieListPage> createState() => _MovieListPageState(genre: this.genre);
-// }
-
-// class _MovieListPageState extends State<MovieListPage> {
-//   final Genre genre;
-
-//   _MovieListPageState({required this.genre});
-
-//   List<MovieObject> movieList = [];
-
-//   MovieListResponse? movieListResponse;
-//   var isLoaded = false;
-
-//   @override
-//   void initState() {
-//     super.initState();
-//     fetchMovieList();
-//   }
-
-//   fetchMovieList() async {
-//     movieListResponse = await Services().fetchMovieList(genre.id, 1);
-//     var resultData = movieListResponse?.results;
-//     if (resultData != null) {
-//       setState(() {
-//         movieList.addAll(resultData);
-//         isLoaded = true;
-//       });
-//     }
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-
-//   }
-// }
 
 class MovieListPage extends StatelessWidget {
   final Genre selectedGenre;

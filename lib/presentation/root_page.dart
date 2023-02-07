@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:moviedb_flutter/model/bloc/navigation/navigation_cubit.dart';
 import 'package:moviedb_flutter/model/bloc/navigation/navbar_items.dart';
 import 'package:moviedb_flutter/presentation/genre_page.dart';
+import 'package:moviedb_flutter/presentation/home_page.dart';
 
 class RootPage extends StatelessWidget {
   const RootPage({super.key});
@@ -13,7 +12,20 @@ class RootPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Movie Db App using Flutter"),
+        title: ShaderMask(
+          shaderCallback: (bounds) => LinearGradient(
+            colors: [Colors.blue, Colors.green],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ).createShader(bounds),
+          child: Text(
+            "TMDB",
+            style: TextStyle(
+              fontSize: 36.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
       ),
       bottomNavigationBar: BlocBuilder<NavigationCubit, NavigationState>(
         builder: (context, state) {
@@ -45,7 +57,7 @@ class RootPage extends StatelessWidget {
       body: BlocBuilder<NavigationCubit, NavigationState>(
         builder: (context, state) {
           if (state.navbarItem == NavbarItem.home) {
-            return Scaffold();
+            return HomePage();
           } else if (state.navbarItem == NavbarItem.genre) {
             return GenrePage();
           }
